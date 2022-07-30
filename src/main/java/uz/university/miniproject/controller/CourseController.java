@@ -18,8 +18,7 @@ public class CourseController {
 
     @PostMapping("/createInfo")
     public ResponseEntity postMethod(@RequestBody Course course){
-        Course course1 = courseService.save(course);
-        return ResponseEntity.ok(course1);
+        return ResponseEntity.ok(courseService.save(course));
     }
     @GetMapping("/showInfo")
     public ResponseEntity getMethod(){
@@ -34,35 +33,37 @@ public class CourseController {
     @PutMapping("/changeInfo")
     public ResponseEntity putMethod(@RequestBody Course course){
         List<Course> seeInfo = courseService.findAll();
-        for (int i = 0; i < seeInfo.size(); i++) {
-            if(course.getId().equals(seeInfo.get(i).getId())){
-                if(course.getDuration() != null){
-                    seeInfo.get(i).setDuration(course.getDuration());
-                }else {
-                    seeInfo.get(i).setDuration(seeInfo.get(i).getDuration());
+        for (Course value : seeInfo) {
+            if (course.getId().equals(value.getId())) {
+                if (course.getDuration() != null) {
+                    value.setDuration(course.getDuration());
+                } else {
+                    value.setDuration(value.getDuration());
                 }
-                if(course.getName() != null){
-                    seeInfo.get(i).setName(course.getName());
-                }else {
-                    seeInfo.get(i).setName(seeInfo.get(i).getName());
+                if (course.getName() != null) {
+                    value.setName(course.getName());
+                } else {
+                    value.setName(value.getName());
                 }
-                if (course.getPrice() != null){
-                    seeInfo.get(i).setPrice(course.getPrice());
-                }else {
-                    seeInfo.get(i).setPrice(seeInfo.get(i).getPrice());
+                if (course.getPrice() != null) {
+                    value.setPrice(course.getPrice());
+                } else {
+                    value.setPrice(value.getPrice());
                 }
-                course = seeInfo.get(i);
+                course = value;
                 courseService.save(course);
             }
         }
         return ResponseEntity.ok(course);
     }
     @DeleteMapping("/deleteById")
-    public void deleteIdMethod(@RequestBody Course course){
+    public String deleteIdMethod(@RequestBody Course course){
         courseService.deleteById(course.getId());
+        return course.getId() + " deleted";
     }
     @DeleteMapping("/deleteAll")
-    public void deleteAll(){
+    public String deleteAll(){
         courseService.deleteAll();
+        return "AllDeleted";
     }
 }

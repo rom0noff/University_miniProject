@@ -33,25 +33,27 @@ public class DayController {
     @PutMapping("/changeInfo")
     public ResponseEntity putMethod(@RequestBody Day day){
         List<Day> seeInfo = dayService.findAll();
-        for (int i = 0; i < seeInfo.size(); i++) {
-            if(day.getId().equals(seeInfo.get(i).getId())){
-                if (day.getName() != null){
-                    seeInfo.get(i).setName(day.getName());
-                }else {
-                    seeInfo.get(i).setName(seeInfo.get(i).getName());
+        for (Day value : seeInfo) {
+            if (day.getId().equals(value.getId())) {
+                if (day.getName() != null) {
+                    value.setName(day.getName());
+                } else {
+                    value.setName(value.getName());
                 }
-                day = seeInfo.get(i);
+                day = value;
                 dayService.save(day);
             }
         }
         return ResponseEntity.ok(day);
     }
     @DeleteMapping("/deleteById")
-    public void deleteId(@RequestBody Day day){
+    public String deleteId(@RequestBody Day day){
         dayService.deleteById(day.getId());
+        return day.getId() + " deleted";
     }
     @DeleteMapping("/deletAll")
-    public void deleteAll(){
+    public String deleteAll(){
         dayService.deleteAll();
+        return "AllDeleted";
     }
 }

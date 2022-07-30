@@ -32,26 +32,28 @@ public class GroupController {
     @PutMapping("changeInfo")
     public ResponseEntity changeMethod(@RequestBody Group group){
         List<Group> seeInfo = groupService.findAll();
-        for (int i = 0; i < seeInfo.size(); i++) {
-            if (group.getId().equals(seeInfo.get(i).getId())){
-                if(group.getName() != null){
-                    seeInfo.get(i).setName(group.getName());
-                }else {
-                    seeInfo.get(i).setName(seeInfo.get(i).getName());
+        for (Group value : seeInfo) {
+            if (group.getId().equals(value.getId())) {
+                if (group.getName() != null) {
+                    value.setName(group.getName());
+                } else {
+                    value.setName(value.getName());
                 }
-                group = seeInfo.get(i);
+                group = value;
                 groupService.save(group);
             }
         }
         return ResponseEntity.ok(group);
     }
     @DeleteMapping("/deleteById")
-    public void deleteById(@RequestBody Group group){
+    public String deleteById(@RequestBody Group group){
         groupService.deleteId(group.getId());
+        return group.getId() + " deleted";
     }
     @DeleteMapping("/deleteAll")
-    public void deleteAll(){
+    public String deleteAll(){
         groupService.deleteAll();
+        return "AllDeleted";
     }
 
 }

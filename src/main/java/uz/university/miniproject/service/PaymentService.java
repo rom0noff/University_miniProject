@@ -12,7 +12,7 @@ import java.util.Optional;
 public class PaymentService {
     //
     @Autowired
-    PaymentRepo paymentRepo;
+    private PaymentRepo paymentRepo;
 
     public Payment save(Payment payment){
         return paymentRepo.save(payment);

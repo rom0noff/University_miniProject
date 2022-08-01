@@ -1,7 +1,8 @@
 package uz.university.miniproject.entity.model;
-import javax.persistence.*;
+
 import lombok.*;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Getter
@@ -10,22 +11,16 @@ import java.io.Serializable;
 @AllArgsConstructor
 @ToString
 @Entity
-@Table(name = "payment")
-public class Payment implements Serializable {
+@Table(name = "group_student")
+public class GroupStudent implements Serializable {
     //
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "sum")
-    private String sum;
-    @Column(name = "description")
-    private String description;
-    @Column(name = "created_date")
-    private String created_date;
 
     @ManyToOne
-    @JoinColumn(name = "pay_type_id")
-    private PayType payType;
+    @JoinColumn(name = "group_id")
+    private Group group;
 
     @ManyToOne
     @JoinColumn(name = "student_id")

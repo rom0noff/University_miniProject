@@ -3,6 +3,8 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.LinkedList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -18,4 +20,7 @@ public class Day implements Serializable {
     private Long id;
     @Column(name = "name")
     private String name;
+
+    @OneToMany(mappedBy = "day", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<TimeTable> tables = new LinkedList<>();
 }

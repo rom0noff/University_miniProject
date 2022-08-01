@@ -1,8 +1,8 @@
 package uz.university.miniproject.entity.model;
 
-import javax.persistence.*;
 import lombok.*;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
@@ -13,17 +13,15 @@ import java.util.List;
 @AllArgsConstructor
 @ToString
 @Entity
-@Table(name = "room")
-public class Room implements Serializable {
+@Table(name = "payType")
+public class PayType implements Serializable {
     //
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "name")
     private String name;
-    @Column(name = "capacity")
-    private String capacity;
 
-    @OneToMany(mappedBy = "room", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Group> groups = new LinkedList<>();
+    @OneToMany(mappedBy = "payType", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Payment> payments = new LinkedList<>();
 }

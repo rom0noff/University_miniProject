@@ -4,6 +4,9 @@ import javax.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
+import java.util.LinkedList;
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -20,4 +23,7 @@ public class Status implements Serializable {
     private String name;
     @Column(name = "description")
     private String description;
+
+    @OneToMany(mappedBy = "status", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Group> groups = new LinkedList<>();
 }

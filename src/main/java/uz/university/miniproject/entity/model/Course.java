@@ -3,6 +3,8 @@ package uz.university.miniproject.entity.model;
 import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.LinkedList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -22,4 +24,7 @@ public class Course implements Serializable {
     private String price;
     @Column(name = "duration")
     private String duration;
-}
+
+    @OneToMany(mappedBy = "course", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Group> groups = new LinkedList<>();
+ }

@@ -10,13 +10,11 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class PaymentDto {
+public class TimeTableDto {
     //
     private Long id;
-    @JsonProperty("sum")
-    private String sum;
-    @JsonProperty("description")
-    private String description;
-    @JsonProperty("created_date")
-    private String created_date;
+    @JsonProperty("start_time")
+    private String start_time;
+    @JsonProperty("end_time")
+    private String end_time;
 }

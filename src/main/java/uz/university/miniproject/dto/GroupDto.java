@@ -15,16 +15,9 @@ public class GroupDto {
     private Long id;
     @JsonProperty("name")
     private String name;
-    @JsonProperty("courseId")
-    private Long courseId;
-    @JsonProperty("teacherId")
-    private Long teacherId;
-    @JsonProperty("roomId")
-    private Long roomId;
     @JsonProperty("start_date")
     private String start_date;
     @JsonProperty("end_date")
     private String end_date;
-    @JsonProperty("status_id")
-    private Long status_id;
+
 }

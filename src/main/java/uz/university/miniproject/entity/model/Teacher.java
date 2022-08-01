@@ -4,6 +4,9 @@ import javax.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
+import java.util.LinkedList;
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -22,4 +25,7 @@ public class Teacher implements Serializable {
     private String phone;
     @Column(name = "salary")
     private String salary;
+
+    @OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Group> groups = new LinkedList<>();
 }

@@ -10,13 +10,9 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class PaymentDto {
+public class PayTypeDto {
     //
     private Long id;
-    @JsonProperty("sum")
-    private String sum;
-    @JsonProperty("description")
-    private String description;
-    @JsonProperty("created_date")
-    private String created_date;
+    @JsonProperty("name")
+    private String name;
 }

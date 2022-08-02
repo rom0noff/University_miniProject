@@ -23,6 +23,21 @@ and to make it easier for students to find out about the location of each subjec
 
 <img width="1005" alt="Screen Shot 2022-08-02 at 05 51 32" src="https://user-images.githubusercontent.com/99829336/182269548-f7650aeb-ed76-4a90-8626-bafd3d7fc095.png">
 
+* Spring Security
+
+- Registration process
+
+<img width="942" alt="Screen Shot 2022-08-02 at 21 29 54" src="https://user-images.githubusercontent.com/99829336/182427028-a671a729-7e6a-421e-b41f-d90435979d42.png">
+
+- If the userName you want to enter is registered
+
+<img width="948" alt="Screen Shot 2022-08-02 at 21 29 57" src="https://user-images.githubusercontent.com/99829336/182427353-622d3697-69da-44da-9bbb-d5e1e0945730.png">
+
+- View in the browser
+
+<img width="473" alt="Screen Shot 2022-08-02 at 21 31 35" src="https://user-images.githubusercontent.com/99829336/182427709-3c495b3b-2f82-4a83-981d-5454f1e5384b.png">
+
+
 * [Click to view Postman Result](https://github.com/rom0noff/University_miniProject/blob/master/postmanRequests/University-miniProject.postman_collection.json)
 
 

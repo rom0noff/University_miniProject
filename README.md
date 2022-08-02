@@ -21,7 +21,7 @@ and to make it easier for students to find out about the location of each subjec
 
 * DELETE Request
 
-<img width="1005" alt="Screen Shot 2022-08-02 at 05 51 32" src="https://user-images.githubusercontent.com/99829336/182269548-f7650aeb-ed76-4a90-8626-bafd3d7fc095.png">
+<img width="956" alt="Screen Shot 2022-08-02 at 21 40 17" src="https://user-images.githubusercontent.com/99829336/182428234-abd300c2-c4b0-4e6c-ae29-6a6b5759099f.png">
 
 # Spring Security
 

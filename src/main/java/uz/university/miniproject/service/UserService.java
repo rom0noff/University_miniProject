@@ -1,21 +1,21 @@
 package uz.university.miniproject.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import uz.university.miniproject.entity.model.User;
 import uz.university.miniproject.repository.UserRepo;
 
-import java.util.Locale;
-
 @Service
 public class UserService {
     //
-    @Autowired
-    private UserRepo userRepo;
+    private final UserRepo userRepo;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
+
+    public UserService(UserRepo userRepo, PasswordEncoder passwordEncoder) {
+        this.userRepo = userRepo;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     public User createSave(User user){
         user.setPassword(passwordEncoder.encode(user.getPassword()));

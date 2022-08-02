@@ -63,10 +63,10 @@ public class GroupController {
         }
         return ResponseEntity.ok(group);
     }
-    @DeleteMapping("/deleteById")
-    public String deleteById(@RequestBody Group group){
-        groupService.deleteId(group.getId());
-        return group.getId() + " deleted";
+    @DeleteMapping("/deleteById/{id}")
+    public String deleteById(@PathVariable Long id){
+        groupService.deleteId(id);
+        return id + " deleted";
     }
     @DeleteMapping("/deleteAll")
     public String deleteAll(){

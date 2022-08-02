@@ -20,18 +20,10 @@ public class Group implements Serializable {
     private Long id;
     @Column(name = "name")
     private String name;
-    @Column(name = "start_date")
+    @Column(name = "start_Date")
     private String start_date;
-    @Column(name = "end_date")
+    @Column(name = "end_Date")
     private String end_date;
-
-    @OneToMany(mappedBy = "group", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<GroupTimeTable> groupTimeTables = new LinkedList<>();
-
-
-    @OneToMany(mappedBy = "group", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<GroupStudent> groupStudents = new LinkedList<>();
-
 
     @ManyToOne
     @JoinColumn(name = "course_id")

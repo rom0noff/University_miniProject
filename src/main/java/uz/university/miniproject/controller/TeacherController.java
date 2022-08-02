@@ -66,9 +66,9 @@ public class TeacherController {
         teacherService.deleteAll();
         return "AllDeleted";
     }
-    @DeleteMapping("/deleteById")
-    public String deleteById(@RequestBody Teacher teacher){
-        teacherService.deleteById(teacher.getId());
-        return teacher.getId() + " deleted";
+    @DeleteMapping("/deleteById/{id}")
+    public String deleteById(@PathVariable Long id){
+        teacherService.deleteById(id);
+        return id + " deleted";
     }
 }

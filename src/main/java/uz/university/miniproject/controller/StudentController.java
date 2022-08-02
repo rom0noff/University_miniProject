@@ -60,9 +60,9 @@ public class StudentController {
         studentService.deleteAll();
         return "AllDeleted";
     }
-    @DeleteMapping("/deleteById")
-    public String deleteById(@RequestBody Student student){
-        studentService.deleteById(student.getId());
-        return student.getId() + " deleted";
+    @DeleteMapping("/deleteById/{id}")
+    public String deleteById(@PathVariable Long id){
+        studentService.deleteById(id);
+        return id + " deleted";
     }
 }

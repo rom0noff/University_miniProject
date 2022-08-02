@@ -20,7 +20,8 @@ public class Payment implements Serializable {
     private String sum;
     @Column(name = "description")
     private String description;
-    @Column(name = "created_date")
+
+    @Column(name = "created_Date")
     private String created_date;
 
     @ManyToOne

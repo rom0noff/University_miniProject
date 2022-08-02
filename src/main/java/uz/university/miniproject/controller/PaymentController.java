@@ -59,9 +59,9 @@ public class PaymentController {
         paymentService.deleteAll();
         return "AllDeleted";
     }
-    @DeleteMapping("/deleteById")
-    public String deleteById(@RequestBody Payment payment){
-        paymentService.deleteById(payment.getId());
-        return payment.getId() + " deleted";
+    @DeleteMapping("/deleteById/{id}")
+    public String deleteById(@PathVariable Long id){
+        paymentService.deleteById(id);
+        return id + " deleted";
     }
 }

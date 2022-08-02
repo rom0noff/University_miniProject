@@ -56,9 +56,9 @@ public class PayTypeController {
         payTypeService.deleteAll();
         return "AllDeleted";
     }
-    @DeleteMapping("/deleteById")
-    public String deleteById(@RequestBody Room room){
-        payTypeService.deleteById(room.getId());
-        return room.getId() + " deleted";
+    @DeleteMapping("/deleteById/{id}")
+    public String deleteById(@PathVariable Long id){
+        payTypeService.deleteById(id);
+        return id + " deleted";
     }
 }

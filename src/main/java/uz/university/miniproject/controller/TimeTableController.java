@@ -61,9 +61,9 @@ public class TimeTableController {
         tableService.deleteAll();
         return "AllDeleted";
     }
-    @DeleteMapping("/deleteById")
-    public String deleteById(@RequestBody TimeTable timeTable){
-        tableService.deleteById(timeTable.getId());
-        return timeTable.getId() + " deleted";
+    @DeleteMapping("/deleteById/{id}")
+    public String deleteById(@PathVariable Long id){
+        tableService.deleteById(id);
+        return id + " deleted";
     }
 }

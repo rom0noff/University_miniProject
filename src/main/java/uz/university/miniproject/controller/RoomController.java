@@ -60,9 +60,9 @@ public class RoomController {
         roomService.deleteAll();
         return "AllDeleted";
     }
-    @DeleteMapping("/deleteById")
-    public String deleteById(@RequestBody Room room){
-        roomService.deleteById(room.getId());
-        return room.getId() + " deleted";
+    @DeleteMapping("/deleteById/{id}")
+    public String deleteById(@PathVariable Long id){
+        roomService.deleteById(id);
+        return id + " deleted";
     }
 }

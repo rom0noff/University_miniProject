@@ -63,10 +63,10 @@ public class CourseController {
         }
         return ResponseEntity.ok(course);
     }
-    @DeleteMapping("/deleteById")
-    public String deleteIdMethod(@RequestBody Course course){
-        courseService.deleteById(course.getId());
-        return course.getId() + " deleted";
+    @DeleteMapping("/deleteById/{id}")
+    public String deleteIdMethod(@PathVariable Long id){
+        courseService.deleteById(id);
+        return id + " deleted";
     }
     @DeleteMapping("/deleteAll")
     public String deleteAll(){

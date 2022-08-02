@@ -19,16 +19,21 @@ public class TimeTable implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "start_time")
+    @Column(name = "start_Time")
     private String start_time;
-    @Column(name = "end_time")
+    @Column(name = "end_Time")
     private String end_time;
-
-    @OneToMany(mappedBy = "timeTable", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<GroupTimeTable> groupTimeTables = new LinkedList<>();
 
     @ManyToOne
     @JoinColumn(name = "day_id")
     private Day day;
+
+    @ManyToMany
+    @JoinTable(
+            name = "group_time_table",
+            joinColumns = {@JoinColumn(name = "time_table_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "group_id", referencedColumnName = "id")}
+    )
+    List<TimeTable> tables = new LinkedList<>();
 
 }

@@ -53,10 +53,10 @@ public class DayController {
         }
         return ResponseEntity.ok(day);
     }
-    @DeleteMapping("/deleteById")
-    public String deleteId(@RequestBody Day day){
-        dayService.deleteById(day.getId());
-        return day.getId() + " deleted";
+    @DeleteMapping("/deleteById/{id}")
+    public String deleteId(@PathVariable Long id){
+        dayService.deleteById(id);
+        return id + " deleted";
     }
     @DeleteMapping("/deletAll")
     public String deleteAll(){

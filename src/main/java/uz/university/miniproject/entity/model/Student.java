@@ -27,6 +27,12 @@ public class Student implements Serializable {
     @OneToMany(mappedBy = "student", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Payment> payments = new LinkedList<>();
 
-    @OneToMany(mappedBy = "student", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<GroupStudent> groupStudents = new LinkedList<>();
+
+    @ManyToMany
+    @JoinTable(
+            name = "group_student",
+            joinColumns = {@JoinColumn(name = "group_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "student_id", referencedColumnName = "id")}
+    )
+    List<Group> groups = new LinkedList<>();
 }

@@ -60,9 +60,9 @@ public class StatusController {
         statusService.deleteAll();
         return "AllDeleted";
     }
-    @DeleteMapping("deleteById")
-    public String deleteById(@RequestBody Status status){
-        statusService.deleteById(status.getId());
-        return status.getId() + " deleted";
+    @DeleteMapping("deleteById/{id}")
+    public String deleteById(@PathVariable Long id){
+        statusService.deleteById(id);
+        return id + " deleted";
     }
 }

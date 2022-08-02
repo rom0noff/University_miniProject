@@ -31,6 +31,7 @@ public class TimeTableController {
     @PutMapping("/changeInfo")
     public ResponseEntity changeInfo(@RequestBody TimeTable timeTable){
         List<TimeTable> seeInfo = tableService.findAll();
+        String message = "";
         for (int i = 0; i < seeInfo.size(); i++) {
             if(timeTable.getId().equals(seeInfo.get(i).getId())){
                 if(timeTable.getStart_time() != null){
@@ -45,7 +46,13 @@ public class TimeTableController {
                 }
                 timeTable = seeInfo.get(i);
                 tableService.save(timeTable);
+                return ResponseEntity.ok(timeTable);
+            }else {
+                message = "not";
             }
+        }
+        if (message.equals("not")){
+            return ResponseEntity.ok('"' + "id" + '"' + ":"  + '"' + timeTable.getId() + '"' + " information not found");
         }
         return ResponseEntity.ok(timeTable);
     }

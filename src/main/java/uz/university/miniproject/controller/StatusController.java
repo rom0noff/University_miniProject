@@ -30,6 +30,7 @@ public class StatusController {
     @PutMapping("/changeInfo")
     public ResponseEntity changeInfo(@RequestBody Status status){
         List<Status> seeInfo = statusService.findAll();
+        String message = "";
         for (int i = 0; i < seeInfo.size(); i++) {
             if(status.getId().equals(seeInfo.get(i).getId())){
                 if(status.getName() != null){
@@ -44,7 +45,13 @@ public class StatusController {
                 }
                 status = seeInfo.get(i);
                 statusService.save(status);
+                return ResponseEntity.ok(status);
+            }else {
+                message = "not";
             }
+        }
+        if(message.equals("not")){
+            return ResponseEntity.ok('"' + "id" + '"' + ":"  + '"' + status.getId() + '"' + " information not found");
         }
         return ResponseEntity.ok(status);
     }

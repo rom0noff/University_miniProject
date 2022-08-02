@@ -33,26 +33,33 @@ public class CourseController {
     @PutMapping("/changeInfo")
     public ResponseEntity putMethod(@RequestBody Course course){
         List<Course> seeInfo = courseService.findAll();
-        for (Course value : seeInfo) {
-            if (course.getId().equals(value.getId())) {
+        String message = "";
+        for (int i = 0; i < seeInfo.size(); i++) {
+            if (course.getId().equals(seeInfo.get(i).getId())) {
                 if (course.getDuration() != null) {
-                    value.setDuration(course.getDuration());
+                    seeInfo.get(i).setDuration(course.getDuration());
                 } else {
-                    value.setDuration(value.getDuration());
+                    seeInfo.get(i).setDuration(seeInfo.get(i).getDuration());
                 }
                 if (course.getName() != null) {
-                    value.setName(course.getName());
+                    seeInfo.get(i).setName(course.getName());
                 } else {
-                    value.setName(value.getName());
+                    seeInfo.get(i).setName(seeInfo.get(i).getName());
                 }
                 if (course.getPrice() != null) {
-                    value.setPrice(course.getPrice());
+                    seeInfo.get(i).setPrice(course.getPrice());
                 } else {
-                    value.setPrice(value.getPrice());
+                    seeInfo.get(i).setPrice(seeInfo.get(i).getPrice());
                 }
-                course = value;
+                course = seeInfo.get(i);
                 courseService.save(course);
+                return ResponseEntity.ok(course);
+            }else {
+                message = "not";
             }
+        }
+        if(message.equals("not")){
+            return ResponseEntity.ok('"' + "id" + '"' + ":"  + '"' + course.getId() + '"' + " information not found");
         }
         return ResponseEntity.ok(course);
     }

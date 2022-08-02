@@ -32,16 +32,34 @@ public class GroupController {
     @PutMapping("changeInfo")
     public ResponseEntity changeMethod(@RequestBody Group group){
         List<Group> seeInfo = groupService.findAll();
-        for (Group value : seeInfo) {
-            if (group.getId().equals(value.getId())) {
+        String message = "";
+        for (int i = 0; i < seeInfo.size(); i++) {
+            if (group.getId().equals(seeInfo.get(i).getId())) {
                 if (group.getName() != null) {
-                    value.setName(group.getName());
+                    seeInfo.get(i).setName(group.getName());
                 } else {
-                    value.setName(value.getName());
+                    seeInfo.get(i).setName(seeInfo.get(i).getName());
                 }
-                group = value;
+                if(group.getStart_date() != null){
+                    seeInfo.get(i).setStart_date(group.getStart_date());
+                }else {
+                    seeInfo.get(i).setStart_date(seeInfo.get(i).getStart_date());
+                }
+                if(group.getEnd_date() != null){
+                    seeInfo.get(i).setEnd_date(group.getEnd_date());
+                }else {
+                    seeInfo.get(i).setEnd_date(seeInfo.get(i).getEnd_date());
+                }
+                group = seeInfo.get(i);
                 groupService.save(group);
+                return ResponseEntity.ok(group);
             }
+            else {
+                message = "not";
+            }
+        }
+        if(message.equals("not")){
+            return ResponseEntity.ok('"' + "id" + '"' + ":"  + '"' + group.getId() + '"' + " information not found");
         }
         return ResponseEntity.ok(group);
     }

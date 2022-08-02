@@ -31,6 +31,7 @@ public class PayTypeController {
     @PutMapping("/changeInfo")
     public ResponseEntity changeInfo(@RequestBody PayType payType){
         List<PayType> seeInfo = payTypeService.findAll();
+        String message = "";
         for (int i = 0; i < seeInfo.size(); i++) {
             if(payType.getId().equals(seeInfo.get(i).getId())){
                 if(payType.getName() != null){
@@ -40,7 +41,13 @@ public class PayTypeController {
                 }
                 payType = seeInfo.get(i);
                 payTypeService.save(payType);
+                return ResponseEntity.ok(payType);
+            }else {
+                message = "not";
             }
+        }
+        if(message.equals("not")){
+            return ResponseEntity.ok('"' + "id" + '"' + ":"  + '"' + payType.getId() + '"' + " information not found");
         }
         return ResponseEntity.ok(payType);
     }

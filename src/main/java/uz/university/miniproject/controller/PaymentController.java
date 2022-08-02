@@ -29,6 +29,7 @@ public class PaymentController {
     @PutMapping("/changeInfo")
     public ResponseEntity changeInfo(@RequestBody Payment payment){
         List<Payment> seeInfo = paymentService.findAll();
+        String message = "";
         for (int i = 0; i < seeInfo.size(); i++) {
             if (payment.getId().equals(seeInfo.get(i).getId())){
                 if(payment.getDescription() != null){
@@ -43,7 +44,13 @@ public class PaymentController {
                 }
                 payment = seeInfo.get(i);
                 paymentService.save(payment);
+                return ResponseEntity.ok(payment);
+            }else {
+                message = "not";
             }
+        }
+        if(message.equals("not")){
+            return ResponseEntity.ok('"' + "id" + '"' + ":"  + '"' + payment.getId() + '"' + " information not found");
         }
         return ResponseEntity.ok(payment);
     }

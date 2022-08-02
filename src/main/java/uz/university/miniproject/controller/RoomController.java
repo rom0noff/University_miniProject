@@ -30,6 +30,7 @@ public class RoomController {
     @PutMapping("/changeInfo")
     public ResponseEntity changeInfo(@RequestBody Room room){
         List<Room> seeInfo = roomService.findAll();
+        String message = "";
         for (int i = 0; i < seeInfo.size(); i++) {
             if(room.getId().equals(seeInfo.get(i).getId())){
                 if(room.getName() != null){
@@ -44,7 +45,13 @@ public class RoomController {
                 }
                 room = seeInfo.get(i);
                 roomService.save(room);
+                return ResponseEntity.ok(room);
+            }else {
+                message = "not";
             }
+        }
+        if (message.equals("not")){
+            return ResponseEntity.ok('"' + "id" + '"' + ":"  + '"' + room.getId() + '"' + " information not found");
         }
         return ResponseEntity.ok(room);
     }

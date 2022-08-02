@@ -33,16 +33,23 @@ public class DayController {
     @PutMapping("/changeInfo")
     public ResponseEntity putMethod(@RequestBody Day day){
         List<Day> seeInfo = dayService.findAll();
-        for (Day value : seeInfo) {
-            if (day.getId().equals(value.getId())) {
+        String message = "";
+        for (int i = 0; i < seeInfo.size(); i++) {
+            if (day.getId().equals(seeInfo.get(i).getId())) {
                 if (day.getName() != null) {
-                    value.setName(day.getName());
+                    seeInfo.get(i).setName(day.getName());
                 } else {
-                    value.setName(value.getName());
+                    seeInfo.get(i).setName(seeInfo.get(i).getName());
                 }
-                day = value;
+                day = seeInfo.get(i);
                 dayService.save(day);
+                return ResponseEntity.ok(day);
+            }else {
+                message = "not";
             }
+        }
+        if(message.equals("not")){
+            return ResponseEntity.ok('"' + "id" + '"' + ":"  + '"' + day.getId() + '"' + " information not found");
         }
         return ResponseEntity.ok(day);
     }

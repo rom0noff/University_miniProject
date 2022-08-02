@@ -30,6 +30,7 @@ public class StudentController {
     @PutMapping("/changeInfo")
     public ResponseEntity changeInfo(@RequestBody Student student){
         List<Student> seeInfo = studentService.findAll();
+        String message = "";
         for (int i = 0; i < seeInfo.size(); i++) {
             if(student.getId().equals(seeInfo.get(i).getId())){
                 if(student.getFullName() != null){
@@ -44,7 +45,13 @@ public class StudentController {
                 }
                 student = seeInfo.get(i);
                 studentService.save(student);
+                return ResponseEntity.ok(student);
+            }else {
+                message = "not";
             }
+        }
+        if(message.equals("not")){
+            return ResponseEntity.ok('"' + "id" + '"' + ":"  + '"' + student.getId() + '"' + " information not found");
         }
         return ResponseEntity.ok(student);
     }

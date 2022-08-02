@@ -8,4 +8,5 @@ import uz.university.miniproject.entity.model.User;
 public interface UserRepo extends CrudRepository<User, Long> {
     //
     User findByUserName(String userUser );
+    boolean existsByUserName(String userName);
 }

@@ -23,7 +23,6 @@ and to make it easier for students to find out about the location of each subjec
 
 <img width="1005" alt="Screen Shot 2022-08-02 at 05 51 32" src="https://user-images.githubusercontent.com/99829336/182269548-f7650aeb-ed76-4a90-8626-bafd3d7fc095.png">
 
-
-
+* Click to view Postman Result [Click]
 
 

@@ -1,6 +1,7 @@
 package uz.university.miniproject.entity.model;
 
 import lombok.*;
+import uz.university.miniproject.entity.enums.StatusEnum;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -24,6 +25,10 @@ public class User implements Serializable {
     private String userName;
     private String password;
     private String email;
+    private String firstName;
+    private String lastName;
+
+    private StatusEnum statusEnum;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
